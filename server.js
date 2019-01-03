@@ -18,6 +18,7 @@ var players = {}; //Keeps a table of all players, the key is the socket id
 var bullet_array = []; // Keeps track of all the bullets to update them on the server 
 // Tell Socket.io to start accepting connections
 io.on('connection', function(socket){
+  console.log('connection to socket')
 	// Listen for a new player trying to connect
 	socket.on('new-player',function(state){
 		console.log("New player joined with state:",state);

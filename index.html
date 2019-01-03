@@ -5,8 +5,7 @@
         <!-- Load the Phaser game library -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.2/phaser.min.js"></script>
         <!-- Load the Socket.io networking library -->
-        <script src="./node_modules/socket.io-client/dist/socket.io.js">var socket = io();</script>
-
+        <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
 
         <!-- Some simple styles and fonts -->
         <style type="text/css">
@@ -54,6 +53,7 @@
                     dir -= Math.round(dir);
                     dir = dir * Math.PI * 2;
                     this.sprite.rotation += dir * 0.1;
+                    
 
                     // Move forward
                     if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.UP)){
@@ -149,7 +149,7 @@
                 game.camera.x = player.sprite.x - WINDOW_WIDTH/2;
                 game.camera.y = player.sprite.y - WINDOW_HEIGHT/2;
 
-                socket = io(); // This triggers the 'connection' event on the server
+                socket = io('http://localhost:5000'); // This triggers the 'connection' event on the server
                 socket.emit('new-player',{x:player.sprite.x,y:player.sprite.y,angle:player.sprite.rotation,type:1})
                 // Listen for other players connecting
                 socket.on('update-players',function(players_data){
